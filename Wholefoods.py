@@ -14,24 +14,26 @@ driver.get('https://www.amazon.com/gp/buy/shipoptionselect/handlers/display.html
 speak = Dispatch("SAPI.SpVoice")
 
 try:
+    ### Find sign-in button
     driver.find_element_by_link_text("Sign in").click()
 
     email = driver.find_element_by_id("ap_email")
     email.clear() 
 
-    ### input your Amazon account name
+    ### Input your Amazon account name
     email.send_keys("my account")
 
-
+    
     driver.find_element_by_id("continue").click()
 
-    ### input your Amazon password
+    ### Input your Amazon password
     password = driver.find_element_by_id("ap_password")
     password.clear() 
     password.send_keys("my password")
 
     driver.find_element_by_id("signInSubmit").click()
-
+    
+    ### Go to shopping cart
     driver.find_element_by_id("nav-cart").click()
 
     #driver.find_element_by_id("sc-alm-buy-box-ptc-button-QW1hem9uIEZyZXNo").click()
@@ -41,6 +43,7 @@ except:
     print("Continue")
     speak.Speak("Please do it manually!")
 
+### Continue on page "Before your checkout"
 n=1
 while n<=3:
     try:
@@ -50,7 +53,8 @@ while n<=3:
         speak.Speak("Please do step one manually!")
         n+=1
         time.sleep(1)
-        
+
+### Continue on page "Substitution preference"        
 n=1
 while n<=3:
     try:
@@ -101,6 +105,7 @@ while no_open_slots:
         speak.Speak("Whole Foods slots for delivery opened!")
         no_open_slots = False
 
+### Find available time slot
 n=1
 while n<=3:
     try:
@@ -112,6 +117,7 @@ while n<=3:
         n+=1
         time.sleep(1)
 
+### Click "Continue" to go to checkout
 n=1
 while n<=3:
     try:
@@ -123,6 +129,7 @@ while n<=3:
         n+=1
         time.sleep(1)
 
+### Continue on page "Payment method"
 n=1
 while n<=3:
     try:
@@ -134,6 +141,7 @@ while n<=3:
         n+=1
         time.sleep(1)
 
+### Place your order!
 n=1
 while n<=3:
     try:
